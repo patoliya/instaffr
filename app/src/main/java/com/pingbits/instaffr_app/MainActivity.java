@@ -2,16 +2,29 @@ package com.pingbits.instaffr_app;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import com.pingbits.instaffr_app.Model.Offer;
+import com.pingbits.instaffr_app.adapters.OfferListAdapter;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
+
+    ListView offer_list_view;
+    OfferListAdapter offer_list_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        offer_list_view = (ListView)findViewById(R.id.offer_list);
+        offer_list_adapter = new OfferListAdapter( (new Offer().getDumyList(20)) ,this );
+
+        offer_list_view.setAdapter(offer_list_adapter);
     }
 
 
