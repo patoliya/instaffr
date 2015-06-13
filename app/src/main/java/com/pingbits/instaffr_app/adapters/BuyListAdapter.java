@@ -47,7 +47,7 @@ public class BuyListAdapter extends BaseAdapter {
         if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
 
-            view = inflater.inflate(R.layout.buy_item_view, viewGroup, false);
+            view = inflater.inflate(R.layout.item_todo, viewGroup, false);
         }
 
         TextView item_name_view = (TextView) view.findViewById(R.id.item_name);
