@@ -1,8 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="AppTheme.WithActionBar"/>
+
+    <style name="AppTheme.WithActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <!-- Draws the white background on every activity -->
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:colorBackground">@android:color/white</item>
+
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+
+        <!-- Removes shadow below actionbar -->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="actionBarStyle">@style/AppTheme.ActionBar</item>
     </style>
 
+    <style name="AppTheme.WithoutActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Draws the white background on every activity -->
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:colorBackground">@android:color/white</item>
+
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="DialogTheme.Small" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="HeaderBar">
+        <item name="android:background">?colorPrimary</item>
+        <item name="elevation">@dimen/headerbar_elevation</item>
+    </style>
+
+
+
+    <dimen name="headerbar_elevation">4dp</dimen>
+
+    <style name="AppTheme.ActionBar" parent="style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <!-- remove shadow below action bar -->
+        <!-- <item name="android:elevation">0dp</item> -->
+        <!-- Support library compatibility -->
+        <item name="elevation">0dp</item>
+    </style>
 </resources>
