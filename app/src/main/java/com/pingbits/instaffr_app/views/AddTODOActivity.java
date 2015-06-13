@@ -109,7 +109,7 @@ public class AddTODOActivity extends AppCompatActivity {
             if (indx == 100) {
                 adapter.save();
             } else {
-//                TodoServer.getInstance(AddTODOActivity.this).postTodo(conns.get(indx).getName(), );
+                adapter.send(conns.get(indx).getName());
             }
             finish();
         }

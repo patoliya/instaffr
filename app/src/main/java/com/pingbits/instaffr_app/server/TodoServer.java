@@ -45,13 +45,23 @@ public class TodoServer implements Callback<List<TodoItem>> {
 
     public void getLatestTodos(TodoCallback cb) {
         callback = cb;
-        String name = BuildConfig.CONNECTIONSET.equals("0") ? "Parth" : "Jaydeep";
+        String name = BuildConfig.CONNECTIONSET.equals("0") ? "Jaydeep": "Parth";
         service.getTodos(name, this);
     }
 
     public void postTodo(String sendTo, String title) {
         String addedBy = BuildConfig.CONNECTIONSET.equals("0") ? "Jaydeep" : "Parth";
-        service.postTodo(sendTo, title, addedBy);
+        service.postTodo(sendTo, title, addedBy, new Callback<String>() {
+            @Override
+            public void success(String s, Response response) {
+                Log.d("SUCCESS", "asdf");
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.e("FAILURE", error.toString());
+            }
+        });
     }
 
     @Override

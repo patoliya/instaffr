@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import com.pingbits.greendao.Todo;
 import com.pingbits.instaffr_app.DbUtils;
 import com.pingbits.instaffr_app.R;
+import com.pingbits.instaffr_app.server.TodoServer;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.ArrayList;
@@ -89,5 +90,15 @@ public class AddTODOAdapter extends BaseAdapter {
             todos.add(new Todo(null, title, "me", false));
         }
         DbUtils.mTodoDao.insertInTx(todos);
+    }
+
+    public void send(String name) {
+        for (int i = 0; i < mItems.size(); ++i) {
+            String title = mItems.get(i);
+            if (title == null || title.trim().isEmpty()) {
+                continue;
+            }
+            TodoServer.getInstance(context).postTodo(name, title);
+        }
     }
 }
