@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.pingbits.greendao.Todo;
+import com.pingbits.instaffr_app.DbUtils;
 import com.pingbits.instaffr_app.R;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -74,4 +76,18 @@ public class AddTODOAdapter extends BaseAdapter {
     }
 
 
+    /**
+     * Writes to database
+     */
+    public void save() {
+        ArrayList<Todo> todos = new ArrayList<>(mItems.size());
+        for (int i = 0; i < mItems.size(); ++i) {
+            String title = mItems.get(i);
+            if (title == null || title.trim().isEmpty()) {
+                continue;
+            }
+            todos.add(new Todo(null, title, "me"));
+        }
+        DbUtils.mTodoDao.insertInTx(todos);
+    }
 }

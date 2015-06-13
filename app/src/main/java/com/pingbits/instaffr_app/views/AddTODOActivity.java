@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.melnykov.fab.FloatingActionButton;
 import com.pingbits.instaffr_app.R;
 import com.pingbits.instaffr_app.adapters.AddTODOAdapter;
 import com.pingbits.instaffr_app.utils.CircleTransform;
@@ -47,6 +48,9 @@ public class AddTODOActivity extends AppCompatActivity {
         adapter = new AddTODOAdapter(this);
         listView.setAdapter(adapter);
         setListFooter(listView);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new FabClickListener());
     }
 
     private void setListFooter(final ListView list) {
@@ -69,5 +73,14 @@ public class AddTODOActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    private class FabClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            adapter.save();
+            finish();
+        }
     }
 }

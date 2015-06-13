@@ -10,15 +10,15 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
-import com.pingbits.instaffr_app.Model.Item;
+import com.pingbits.instaffr_app.DbUtils;
 import com.pingbits.instaffr_app.R;
 import com.pingbits.instaffr_app.adapters.BuyListAdapter;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView item_list_view;
-    BuyListAdapter buy_list_adapter;
+    ListView listView;
+    BuyListAdapter adapter;
     FloatingActionButton fab;
 
     @Override
@@ -33,14 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         // for list of buying items
-        item_list_view = (ListView) findViewById(R.id.item_list);
-        buy_list_adapter = new BuyListAdapter((new Item().getDumyList(20)), this);
-        item_list_view.setAdapter(buy_list_adapter);
-
+        listView = (ListView) findViewById(R.id.item_list);
 
         // floating button at the bottom
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.attachToListView(item_list_view);
+        fab.attachToListView(listView);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,9 +46,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter = new BuyListAdapter(DbUtils.getAllTodos(), this);
+        listView.setAdapter(adapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
