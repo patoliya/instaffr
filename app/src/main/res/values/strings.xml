@@ -4,4 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="add_connections">Add Connections</string>
+    <string name="recent_connections">Recent Connections</string>
+    <string name="all_connections">All Connections</string>
 </resources>

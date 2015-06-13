@@ -1,8 +1,8 @@
 package com.pingbits.instaffr_app.views;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -22,8 +22,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        offer_list_view = (ListView)findViewById(R.id.offer_list);
-        offer_list_adapter = new OfferListAdapter( (new Offer().getDumyList(20)) ,this );
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        NavDrawer drawer = new NavDrawer(this, toolbar);
+
+        offer_list_view = (ListView) findViewById(R.id.offer_list);
+        offer_list_adapter = new OfferListAdapter((new Offer().getDumyList(20)), this);
 
         offer_list_view.setAdapter(offer_list_adapter);
     }

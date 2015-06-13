@@ -3,14 +3,23 @@
     android:layout_height="match_parent"
      tools:context=".MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
     <ListView
+        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/offer_list"
         android:paddingTop="16dp"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        >
-    </ListView>
+        android:paddingRight="16dp" />
+
 
 </RelativeLayout>
