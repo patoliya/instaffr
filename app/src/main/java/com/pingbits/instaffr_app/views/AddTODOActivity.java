@@ -4,7 +4,6 @@ package com.pingbits.instaffr_app.views;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -43,11 +42,22 @@ public class AddTODOActivity extends AppCompatActivity {
                 .transform(new CircleTransform())
                 .into(dp);
 
-        ListView listView = (ListView) findViewById(R.id.lst);
+        final ListView listView = (ListView) findViewById(R.id.lst);
         adapter = new AddTODOAdapter(this);
         listView.setAdapter(adapter);
-        View footer = getLayoutInflater().inflate(R.layout.footer_add_todo_list, listView, false);
-        listView.addFooterView(footer);
+        setListFooter(listView);
+    }
+
+    private void setListFooter(final ListView list) {
+        View footer = getLayoutInflater().inflate(R.layout.footer_add_todo_list, list, false);
+        footer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.add("");
+                list.setSelection(adapter.getCount() - 1);
+            }
+        });
+        list.addFooterView(footer);
     }
 
 }

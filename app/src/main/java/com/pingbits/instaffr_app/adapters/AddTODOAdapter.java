@@ -2,8 +2,6 @@ package com.pingbits.instaffr_app.adapters;
 
 
 import android.content.Context;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +18,23 @@ public class AddTODOAdapter extends BaseAdapter {
 
     private ArrayList<String> mItems;
 
+    private boolean focus = false;
+
     public AddTODOAdapter(Context context) {
         this.context = context;
         mItems = new ArrayList<>();
         mItems.add("");
+    }
+
+    public void add(String item) {
+        mItems.add(item);
+        focus = true;
+        notifyDataSetChanged();
+    }
+
+    public void add(int index, String item) {
+        mItems.add(index, item);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -42,11 +53,23 @@ public class AddTODOAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int i, View view, ViewGroup viewGroup) {
+    public View getView(final int position, View view, ViewGroup viewGroup) {
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.item_add_todo, viewGroup, false);
         }
-        MaterialEditText editText = (MaterialEditText) view.findViewById(R.id.title);
+        final MaterialEditText editText = (MaterialEditText) view.findViewById(R.id.title);
+        editText.setText(mItems.get(position));
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    mItems.set(position, editText.getText().toString());
+                }
+            }
+        });
+        if (focus && position == (mItems.size() - 1)) {
+            editText.requestFocus();
+        }
         return view;
     }
 
