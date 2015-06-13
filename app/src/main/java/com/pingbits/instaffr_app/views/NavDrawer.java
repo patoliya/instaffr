@@ -15,6 +15,7 @@ import com.mikepenz.materialdrawer.accountswitcher.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
@@ -43,8 +44,14 @@ public class NavDrawer implements Drawer.OnDrawerItemClickListener {
                 .withToolbar(toolbar)
                 .withAccountHeader(header)
                 .addDrawerItems(
+                        new PrimaryDrawerItem()
+                                .withName(activity.getString(R.string.add_connections))
+                                .withIcon(R.drawable.ic_person_add_black_24dp)
+                                .withIconTintingEnabled(true)
+                                .withCheckable(false)
+                                .withIconColor(Color.GRAY),
                         new SectionDrawerItem()
-                                .withName(activity.getString(R.string.recent_connections)).setDivider(false),
+                                .withName(activity.getString(R.string.recent_connections)),
                         new PrimaryDrawerItem()
                                 .withName("Jaydeep")
                                 .withIcon(R.drawable.ic_person_black_24dp)
@@ -63,15 +70,8 @@ public class NavDrawer implements Drawer.OnDrawerItemClickListener {
                                 .withIconTintingEnabled(true)
                                 .withCheckable(false)
                                 .withIconColor(user_icon_color),
-                        new DividerDrawerItem(),
-                        new PrimaryDrawerItem()
-                                .withName(activity.getString(R.string.add_connections))
-                                .withIcon(R.drawable.ic_person_add_black_24dp)
-                                .withIconTintingEnabled(true)
-                                .withCheckable(false)
-                                .withIconColor(Color.GRAY),
-                        new PrimaryDrawerItem()
-                                .withName(activity.getString(R.string.all_connections))
+                        new SecondaryDrawerItem()
+                                .withName("More")
                                 .withIcon(R.drawable.ic_people_black_24dp)
                                 .withIconTintingEnabled(true)
                                 .withCheckable(false)
