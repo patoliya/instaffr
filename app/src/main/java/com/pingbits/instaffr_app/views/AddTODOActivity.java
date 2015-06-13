@@ -4,6 +4,7 @@ package com.pingbits.instaffr_app.views;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -60,4 +61,13 @@ public class AddTODOActivity extends AppCompatActivity {
         list.addFooterView(footer);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
 }
