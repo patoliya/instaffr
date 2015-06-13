@@ -11,20 +11,32 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.melnykov.fab.FloatingActionButton;
+import com.pingbits.greendao.Connection;
+import com.pingbits.instaffr_app.BuildConfig;
+import com.pingbits.instaffr_app.DbUtils;
 import com.pingbits.instaffr_app.R;
 import com.pingbits.instaffr_app.adapters.AddTODOAdapter;
+import com.pingbits.instaffr_app.server.TodoServer;
 import com.pingbits.instaffr_app.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddTODOActivity extends AppCompatActivity {
 
     private AddTODOAdapter adapter;
+
+    private int indx = 100;
+
+    private List<Connection> conns = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_todo);
 
+        indx = getIntent().getIntExtra("index", 100);
         initGUI();
     }
 
@@ -38,18 +50,33 @@ public class AddTODOActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
 
         ImageView dp = (ImageView) findViewById(R.id.dp);
-        TextView name = (TextView) findViewById(R.id.name);
+        TextView name_view = (TextView) findViewById(R.id.name);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        Picasso.with(this).load(R.drawable.profile)
+        int dp_res;
+        String name;
+        if (indx == 100) {
+            dp_res = BuildConfig.CONNECTIONSET.equals("0") ? R.drawable.profile : R.drawable.parth;
+            name = BuildConfig.CONNECTIONSET.equals("0") ? "Jaydeep" : "Parth";
+            fab.setImageResource(R.drawable.ic_done_white_24dp);
+        } else {
+            conns = DbUtils.mConnectionDao.loadAll();
+            dp_res = conns.get(indx).getDpResource();
+            name = conns.get(indx).getName();
+            fab.setImageResource(R.drawable.ic_send_white_24dp);
+        }
+
+        Picasso.with(this).load(dp_res)
                 .transform(new CircleTransform())
                 .into(dp);
+        name_view.setText(name);
 
         final ListView listView = (ListView) findViewById(R.id.lst);
         adapter = new AddTODOAdapter(this);
         listView.setAdapter(adapter);
         setListFooter(listView);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new FabClickListener());
     }
 
@@ -79,7 +106,11 @@ public class AddTODOActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            adapter.save();
+            if (indx == 100) {
+                adapter.save();
+            } else {
+//                TodoServer.getInstance(AddTODOActivity.this).postTodo(conns.get(indx).getName(), );
+            }
             finish();
         }
     }

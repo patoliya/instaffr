@@ -1,10 +1,12 @@
 package com.pingbits.instaffr_app.views;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -144,6 +146,13 @@ public class NavDrawer implements Drawer.OnDrawerItemClickListener {
 
     @Override
     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
+        Log.d("CLICK", "click = " + i);
+        if (i >= 2 && i <=4) {
+            Intent intent = new Intent(activity, AddTODOActivity.class);
+            intent.putExtra("index", i - 2);
+            activity.startActivity(intent);
+            return true;
+        }
         return false;
     }
 }

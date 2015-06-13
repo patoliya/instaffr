@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,12 +13,18 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
+import com.pingbits.greendao.Todo;
 import com.pingbits.instaffr_app.DbUtils;
 import com.pingbits.instaffr_app.R;
 import com.pingbits.instaffr_app.adapters.BuyListAdapter;
+import com.pingbits.instaffr_app.server.TodoServer;
+
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, TodoServer.TodoCallback {
 
     ListView listView;
     BuyListAdapter adapter;
@@ -48,7 +55,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(intent);
             }
         });
-
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+//                Log.d("TIMER", "calling . . .");
+                TodoServer.getInstance(MainActivity.this).getLatestTodos(MainActivity.this);
+            }
+        }, 500, 500);
     }
 
     @Override
@@ -89,5 +102,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (adapter != null) {
             adapter.toggle(i);
         }
+    }
+
+    @Override
+    public void newTodos(List<Todo> todos) {
+        adapter.addAll(todos);
     }
 }

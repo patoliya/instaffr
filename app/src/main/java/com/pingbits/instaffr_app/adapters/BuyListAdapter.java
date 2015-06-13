@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
 import com.pingbits.greendao.Todo;
 import com.pingbits.instaffr_app.DbUtils;
 import com.pingbits.instaffr_app.R;
@@ -26,6 +27,11 @@ public class BuyListAdapter extends BaseAdapter {
     public BuyListAdapter(List<Todo> items, Context context) {
         this.mItems = items;
         this.context = context;
+    }
+
+    public void addAll(List<Todo> items) {
+        mItems.addAll(0, items);
+        notifyDataSetChanged();
     }
 
     @Override
