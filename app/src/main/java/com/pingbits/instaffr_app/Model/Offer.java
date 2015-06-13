@@ -32,7 +32,7 @@ public class Offer {
         for (int i=0;i<number_of_item;i++){
 
             Offer dumy_offer =new Offer();
-            dumy_offer.shop_name = "Shop name :"+i;
+            dumy_offer.shop_name = "Buy Item :"+i;
             dumy_offer.offer_title = "offer title :"+i;
             dumy_offer.offer_desc = "offer description here available Just filling up the space:"+i;
             dumy_offer.dist = i*100;

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="5dp">
+    android:layout_height="76dp"
+    android:paddingBottom="5dp"
+    >
 
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:id="@+id/offer_image"
-        android:background="@color/accent_material_dark"/>
+    <!--<ImageView-->
+        <!--android:layout_width="60dp"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:id="@+id/offer_image"-->
+        <!--/>-->
 
 
     <LinearLayout
@@ -23,15 +24,15 @@
             android:id="@+id/shop_name"
             android:textSize="25sp"
             android:text="better than kfc"
-            android:background="@color/abc_search_url_text_normal"/>
+            />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/offer_title"
-            android:textSize="15sp"
-            android:text="dsjfkdsfdskfdskfdfdfdskjkldjfkdfdk"
-            android:background="@color/dim_foreground_disabled_material_dark"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/offer_title"-->
+            <!--android:textSize="15sp"-->
+            <!--android:text="dsjfkdsfdskfdskfdfdfdskjkldjfkdfdk"-->
+            <!--/>-->
 
     </LinearLayout>
 
@@ -42,7 +43,9 @@
         android:layout_gravity="center_vertical"
         android:id="@+id/shop_distance"
         android:text="250m"
-        android:textColor="#6e000000"/>
+
+        android:background="@color/accent"
+        android:textColor="#ffffff"/>
 
 
 </LinearLayout>

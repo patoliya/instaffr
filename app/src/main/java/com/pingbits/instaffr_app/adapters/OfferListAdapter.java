@@ -51,11 +51,11 @@ public class OfferListAdapter extends BaseAdapter{
         }
 
         TextView shop_name_view = (TextView)view.findViewById(R.id.shop_name);
-        TextView offer_title_view = (TextView)view.findViewById(R.id.offer_title);
+        //TextView offer_title_view = (TextView)view.findViewById(R.id.offer_title);
         TextView shop_distance_view = (TextView)view.findViewById(R.id.shop_distance);
 
         shop_name_view.setText(offer_list.get(i).shop_name);
-        offer_title_view.setText(offer_list.get(i).offer_title);
+        //offer_title_view.setText(offer_list.get(i).offer_title);
         shop_distance_view.setText(Double.toString(offer_list.get(i).dist)+"m");
 
 
