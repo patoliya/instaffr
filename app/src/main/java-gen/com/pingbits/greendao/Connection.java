@@ -9,6 +9,7 @@ public class Connection {
     private Long id;
     private String name;
     private String email;
+    private Integer dpResource;
 
     public Connection() {
     }
@@ -17,10 +18,11 @@ public class Connection {
         this.id = id;
     }
 
-    public Connection(Long id, String name, String email) {
+    public Connection(Long id, String name, String email, Integer dpResource) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.dpResource = dpResource;
     }
 
     public Long getId() {
@@ -45,6 +47,14 @@ public class Connection {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getDpResource() {
+        return dpResource;
+    }
+
+    public void setDpResource(Integer dpResource) {
+        this.dpResource = dpResource;
     }
 
 }

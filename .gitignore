@@ -8,3 +8,4 @@
 app/gradle.properties
 *.iml
 MyDaoGenerator/build/
+app/gradle.properties

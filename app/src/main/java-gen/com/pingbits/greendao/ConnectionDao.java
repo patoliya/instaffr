@@ -26,6 +26,7 @@ public class ConnectionDao extends AbstractDao<Connection, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property Email = new Property(2, String.class, "email", false, "EMAIL");
+        public final static Property DpResource = new Property(3, Integer.class, "dpResource", false, "DP_RESOURCE");
     };
 
 
@@ -43,7 +44,8 @@ public class ConnectionDao extends AbstractDao<Connection, Long> {
         db.execSQL("CREATE TABLE " + constraint + "'CONNECTION' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
                 "'NAME' TEXT," + // 1: name
-                "'EMAIL' TEXT);"); // 2: email
+                "'EMAIL' TEXT UNIQUE ," + // 2: email
+                "'DP_RESOURCE' INTEGER);"); // 3: dpResource
     }
 
     /** Drops the underlying database table. */
@@ -71,6 +73,11 @@ public class ConnectionDao extends AbstractDao<Connection, Long> {
         if (email != null) {
             stmt.bindString(3, email);
         }
+ 
+        Integer dpResource = entity.getDpResource();
+        if (dpResource != null) {
+            stmt.bindLong(4, dpResource);
+        }
     }
 
     /** @inheritdoc */
@@ -85,7 +92,8 @@ public class ConnectionDao extends AbstractDao<Connection, Long> {
         Connection entity = new Connection( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // email
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // email
+            cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3) // dpResource
         );
         return entity;
     }
@@ -96,6 +104,7 @@ public class ConnectionDao extends AbstractDao<Connection, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setEmail(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setDpResource(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
      }
     
     /** @inheritdoc */

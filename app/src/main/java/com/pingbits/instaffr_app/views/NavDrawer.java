@@ -19,7 +19,12 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
+import com.pingbits.greendao.Connection;
+import com.pingbits.instaffr_app.BuildConfig;
+import com.pingbits.instaffr_app.DbUtils;
 import com.pingbits.instaffr_app.R;
+
+import java.util.List;
 
 public class NavDrawer implements Drawer.OnDrawerItemClickListener {
 
@@ -39,6 +44,8 @@ public class NavDrawer implements Drawer.OnDrawerItemClickListener {
 
         int user_icon_color = activity.getResources().getColor(R.color.user_icon_color);
 
+        List<Connection> connections = DbUtils.mConnectionDao.loadAll();
+
         drawer = new DrawerBuilder()
                 .withActivity(activity)
                 .withToolbar(toolbar)
@@ -53,19 +60,19 @@ public class NavDrawer implements Drawer.OnDrawerItemClickListener {
                         new SectionDrawerItem()
                                 .withName(activity.getString(R.string.recent_connections)),
                         new PrimaryDrawerItem()
-                                .withName("Jaydeep")
+                                .withName(connections.get(0).getName())
                                 .withIcon(R.drawable.ic_person_black_24dp)
                                 .withIconTintingEnabled(true)
                                 .withCheckable(false)
                                 .withIconColor(user_icon_color),
                         new PrimaryDrawerItem()
-                                .withName("Parth")
+                                .withName(connections.get(1).getName())
                                 .withIcon(R.drawable.ic_person_black_24dp)
                                 .withIconTintingEnabled(true)
                                 .withCheckable(false)
                                 .withIconColor(user_icon_color),
                         new PrimaryDrawerItem()
-                                .withName("Nidhi")
+                                .withName(connections.get(2).getName())
                                 .withIcon(R.drawable.ic_person_black_24dp)
                                 .withIconTintingEnabled(true)
                                 .withCheckable(false)
@@ -105,14 +112,26 @@ public class NavDrawer implements Drawer.OnDrawerItemClickListener {
         Drawable backdrop = activity.getResources().getDrawable(R.drawable.stock_backdrop);
         assert backdrop != null;
         backdrop.setColorFilter(activity.getResources().getColor(R.color.primary_light), PorterDuff.Mode.MULTIPLY);
+
+        String name, email;
+        int dp;
+        if(BuildConfig.CONNECTIONSET.equals("0")) {
+            name = "Jaydeep";
+            email = "jaydp17@gmail.com";
+            dp = R.drawable.profile;
+        } else {
+            name = "Parth";
+            email = "parthpatolia@gmail.com";
+            dp = R.drawable.parth;
+        }
         header = new AccountHeaderBuilder()
                 .withActivity(activity)
                 .withHeaderBackground(backdrop)
                 .addProfiles(
                         new ProfileDrawerItem()
-                                .withName("Jaydeep")
-                                .withEmail("jaydp17@gmail.com")
-                                .withIcon(activity.getResources().getDrawable(R.drawable.profile))
+                                .withName(name)
+                                .withEmail(email)
+                                .withIcon(activity.getResources().getDrawable(dp))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override

@@ -11,7 +11,8 @@ public class Connection {
         Entity connection = schema.addEntity("Connection");
         connection.addIdProperty();
         connection.addStringProperty("name");
-        connection.addStringProperty("email");
+        connection.addStringProperty("email").unique();
+        connection.addIntProperty("dpResource");
         return connection;
     }
 }
