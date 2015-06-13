@@ -26,6 +26,7 @@ public class TodoDao extends AbstractDao<Todo, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
         public final static Property AddedBy = new Property(2, String.class, "addedBy", false, "ADDED_BY");
+        public final static Property Done = new Property(3, Boolean.class, "done", false, "DONE");
     };
 
 
@@ -43,7 +44,8 @@ public class TodoDao extends AbstractDao<Todo, Long> {
         db.execSQL("CREATE TABLE " + constraint + "'TODO' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
                 "'TITLE' TEXT," + // 1: title
-                "'ADDED_BY' TEXT);"); // 2: addedBy
+                "'ADDED_BY' TEXT," + // 2: addedBy
+                "'DONE' INTEGER);"); // 3: done
     }
 
     /** Drops the underlying database table. */
@@ -71,6 +73,11 @@ public class TodoDao extends AbstractDao<Todo, Long> {
         if (addedBy != null) {
             stmt.bindString(3, addedBy);
         }
+ 
+        Boolean done = entity.getDone();
+        if (done != null) {
+            stmt.bindLong(4, done ? 1l: 0l);
+        }
     }
 
     /** @inheritdoc */
@@ -85,7 +92,8 @@ public class TodoDao extends AbstractDao<Todo, Long> {
         Todo entity = new Todo( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // addedBy
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // addedBy
+            cursor.isNull(offset + 3) ? null : cursor.getShort(offset + 3) != 0 // done
         );
         return entity;
     }
@@ -96,6 +104,7 @@ public class TodoDao extends AbstractDao<Todo, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setAddedBy(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setDone(cursor.isNull(offset + 3) ? null : cursor.getShort(offset + 3) != 0);
      }
     
     /** @inheritdoc */

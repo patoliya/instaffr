@@ -86,7 +86,7 @@ public class AddTODOAdapter extends BaseAdapter {
             if (title == null || title.trim().isEmpty()) {
                 continue;
             }
-            todos.add(new Todo(null, title, "me"));
+            todos.add(new Todo(null, title, "me", false));
         }
         DbUtils.mTodoDao.insertInTx(todos);
     }
