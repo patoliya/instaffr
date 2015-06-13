@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -15,7 +16,7 @@ import com.pingbits.instaffr_app.R;
 import com.pingbits.instaffr_app.adapters.BuyListAdapter;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     ListView listView;
     BuyListAdapter adapter;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         // for list of buying items
         listView = (ListView) findViewById(R.id.item_list);
+        listView.setOnItemClickListener(this);
 
         // floating button at the bottom
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -75,5 +77,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if (adapter != null) {
+            adapter.toggle(i);
+        }
     }
 }

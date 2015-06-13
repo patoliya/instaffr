@@ -9,6 +9,7 @@ public class Todo {
     private Long id;
     private String title;
     private String addedBy;
+    private Boolean done;
 
     public Todo() {
     }
@@ -17,10 +18,11 @@ public class Todo {
         this.id = id;
     }
 
-    public Todo(Long id, String title, String addedBy) {
+    public Todo(Long id, String title, String addedBy, Boolean done) {
         this.id = id;
         this.title = title;
         this.addedBy = addedBy;
+        this.done = done;
     }
 
     public Long getId() {
@@ -45,6 +47,14 @@ public class Todo {
 
     public void setAddedBy(String addedBy) {
         this.addedBy = addedBy;
+    }
+
+    public Boolean getDone() {
+        return done;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
     }
 
 }

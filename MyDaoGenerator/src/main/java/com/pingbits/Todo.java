@@ -11,6 +11,7 @@ public class Todo {
         todo.addIdProperty();
         todo.addStringProperty("title");
         todo.addStringProperty("addedBy");
+        todo.addBooleanProperty("done");
         return todo;
     }
 }

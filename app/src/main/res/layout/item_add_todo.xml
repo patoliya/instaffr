@@ -8,13 +8,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin">
 
-
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="List item"
-        android:inputType="text"
+        android:inputType="textCapSentences|textAutoCorrect"
         app:met_textColor="@color/text_color"
         app:met_primaryColor="@color/primary"
         app:met_hideUnderline="true" />
