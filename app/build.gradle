@@ -25,4 +25,5 @@ dependencies {
     compile('com.mikepenz:materialdrawer:3.0.7@aar') {
         transitive = true
     }
+    compile 'com.melnykov:floatingactionbutton:1.3.0'
 }

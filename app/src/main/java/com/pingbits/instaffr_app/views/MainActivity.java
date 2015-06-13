@@ -7,15 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.pingbits.instaffr_app.Model.Offer;
+import com.pingbits.instaffr_app.Model.Item;
 import com.pingbits.instaffr_app.R;
-import com.pingbits.instaffr_app.adapters.OfferListAdapter;
+import com.pingbits.instaffr_app.adapters.BuyListAdapter;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView offer_list_view;
-    OfferListAdapter offer_list_adapter;
+    ListView item_list_view;
+    BuyListAdapter buy_list_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
         NavDrawer drawer = new NavDrawer(this, toolbar);
 
-        offer_list_view = (ListView) findViewById(R.id.offer_list);
-        offer_list_adapter = new OfferListAdapter((new Offer().getDumyList(20)), this);
+        item_list_view = (ListView) findViewById(R.id.item_list);
+        buy_list_adapter = new BuyListAdapter((new Item().getDumyList(20)), this);
 
-        offer_list_view.setAdapter(offer_list_adapter);
+        item_list_view.setAdapter(buy_list_adapter);
     }
 
 

@@ -21,8 +21,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/shop_name"
+            android:id="@+id/item_name"
             android:textSize="25sp"
+            android:textColor="@color/text_color"
             android:text="better than kfc"
             />
 
@@ -41,11 +42,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:id="@+id/shop_distance"
+        android:id="@+id/item_addedby"
         android:text="250m"
-
-        android:background="@color/accent"
-        android:textColor="#ffffff"/>
+        android:textColor="@color/secondary_text_color"/>
 
 
 </LinearLayout>

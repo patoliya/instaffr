@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.pingbits.instaffr_app.Model.Offer;
+import com.pingbits.instaffr_app.Model.Item;
 import com.pingbits.instaffr_app.R;
 
 import java.util.List;
@@ -16,24 +16,24 @@ import java.util.List;
  * Created by parth on 13/6/15.
  */
 
-public class OfferListAdapter extends BaseAdapter{
+public class BuyListAdapter extends BaseAdapter{
 
-    List<Offer> offer_list;
+    List<Item> item_list;
     Context context;
 
-    public OfferListAdapter(List<Offer> offer_list,Context context) {
-        this.offer_list = offer_list;
+    public BuyListAdapter(List<Item> item_list, Context context) {
+        this.item_list = item_list;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return offer_list.size();
+        return item_list.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return offer_list.get(i);
+        return item_list.get(i);
     }
 
     @Override
@@ -47,16 +47,16 @@ public class OfferListAdapter extends BaseAdapter{
         if(view == null){
             LayoutInflater inflater = LayoutInflater.from(context);
 
-            view = inflater.inflate(R.layout.offer_item_view,viewGroup,false);
+            view = inflater.inflate(R.layout.buy_item_view,viewGroup,false);
         }
 
-        TextView shop_name_view = (TextView)view.findViewById(R.id.shop_name);
+        TextView item_name_view = (TextView)view.findViewById(R.id.item_name);
         //TextView offer_title_view = (TextView)view.findViewById(R.id.offer_title);
-        TextView shop_distance_view = (TextView)view.findViewById(R.id.shop_distance);
+        TextView item_addedby_view = (TextView)view.findViewById(R.id.item_addedby);
 
-        shop_name_view.setText(offer_list.get(i).shop_name);
-        //offer_title_view.setText(offer_list.get(i).offer_title);
-        shop_distance_view.setText(Double.toString(offer_list.get(i).dist)+"m");
+        item_name_view.setText(item_list.get(i).item_name);
+        //offer_title_view.setText(item_list.get(i).offer_title);
+        item_addedby_view.setText(item_list.get(i).item_addedby);
 
 
         return view;
