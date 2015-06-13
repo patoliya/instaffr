@@ -1,12 +1,15 @@
 package com.pingbits.instaffr_app.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
+import com.melnykov.fab.FloatingActionButton;
 import com.pingbits.instaffr_app.Model.Item;
 import com.pingbits.instaffr_app.R;
 import com.pingbits.instaffr_app.adapters.BuyListAdapter;
@@ -16,21 +19,37 @@ public class MainActivity extends AppCompatActivity {
 
     ListView item_list_view;
     BuyListAdapter buy_list_adapter;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //for navigation drawer
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         NavDrawer drawer = new NavDrawer(this, toolbar);
 
+
+        // for list of buying items
         item_list_view = (ListView) findViewById(R.id.item_list);
         buy_list_adapter = new BuyListAdapter((new Item().getDumyList(20)), this);
-
         item_list_view.setAdapter(buy_list_adapter);
+
+
+        // floating button at the bottom
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.attachToListView(item_list_view);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), AddTODOActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
 
