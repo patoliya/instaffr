@@ -1,4 +1,4 @@
-package com.pingbits.instaffr_app;
+package com.pingbits.instaffr_app.views;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.pingbits.instaffr_app.Model.Offer;
+import com.pingbits.instaffr_app.R;
 import com.pingbits.instaffr_app.adapters.OfferListAdapter;
 
 
