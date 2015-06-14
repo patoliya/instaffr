@@ -19,6 +19,7 @@ import com.pingbits.instaffr_app.R;
 import com.pingbits.instaffr_app.adapters.BuyListAdapter;
 import com.pingbits.instaffr_app.server.TodoServer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -87,8 +88,33 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_navigate) {
+
+            List<String> waypoints = new ArrayList<>();
+            String source_addr = "12.931106,77.623755";
+            String destination_addr = "12.985756,77.603538";
+            waypoints.add("12.936323,77.602465");
+            waypoints.add("12.962141,77.595116");
+            waypoints.add("12.971572,77.594322");
+            waypoints.add("12.984138, 77.597798");
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("http://maps.google.com/maps?saddr=");
+            sb.append(source_addr);
+            for (int i = 0; i < adapter.getCount(); ++i) {
+                if (i == 0) {
+                    sb.append("&daddr=");
+                } else {
+                    sb.append("+to:");
+                }
+                sb.append(waypoints.get(i));
+            }
+            sb.append("+to:");
+            sb.append(destination_addr);
+
             Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                    Uri.parse("http://maps.google.com/maps?saddr=48.74040,2.60932&daddr=48.74091,2.60728+to:48.73919,2.60781"));
+
+//                    Uri.parse("http://maps.google.com/maps?saddr=12.931106,77.623755&daddr=12.936323,77.602465+to:12.985756,77.603538"));
+                    Uri.parse(sb.toString()));
             startActivity(intent);
 
             return true;
